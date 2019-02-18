@@ -21,7 +21,7 @@ install_ss_panel_mod_v3(){
 	chmod -R 777 *
 	chown -R www:www storage
 	chattr +i public/.user.ini
-	wget -N -P  /usr/local/nginx/conf/ --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/nginx.conf
+	wget -N -P  /usr/local/nginx/conf/ --no-check-certificate https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/nginx.conf
 	service nginx restart
 	IPAddress=`wget http://whatismyip.akamai.com/ -O - -q ; echo`;
 	sed -i "s#103.74.192.11#${IPAddress}#" /home/wwwroot/default/sql/sspanel.sql
@@ -51,9 +51,9 @@ Libtest(){
 	echo "$LIB_PING $LIB" >> ping.pl
 	libAddr=`sort -V ping.pl|sed -n '1p'|awk '{print $2}'`
 	if [ "$libAddr" == "$GIT" ];then
-		libAddr='https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.13.tar.gz'
+		libAddr='https://github.com/hxc1427418039/ssrnode/raw/master/libsodium-1.0.17.tar.gz'
 	else
-		libAddr='https://download.libsodium.org/libsodium/releases/libsodium-1.0.13.tar.gz'
+		libAddr='https://download.libsodium.org/libsodium/releases/libsodium-1.0.17.tar.gz'
 	fi
 	rm -f ping.pl		
 }
@@ -134,11 +134,11 @@ install_centos_ssr(){
 	pip install --upgrade pip
 	Libtest
 	wget --no-check-certificate $libAddr
-	tar xf libsodium-1.0.13.tar.gz && cd libsodium-1.0.13
+	tar xf libsodium-1.0.17.tar.gz && cd libsodium-1.0.17
 	./configure && make -j2 && make install
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
-	git clone -b manyuser https://github.com/Anankke/shadowsocks.git  "/root/shadowsocks"
+	git clone -b manyuser https://github.com/hxc1427418039/shadowsocks.git  "/root/shadowsocks"
 	cd /root/shadowsocks
 	chkconfig supervisord on
 	#第一次安装
@@ -185,7 +185,7 @@ install_ubuntu_ssr(){
 	apt-get install python-pip git -y
 	pip install cymysql
 	cd /root
-	git clone -b manyuser https://github.com/Anankke/shadowsocks.git  "/root/shadowsocks"
+	git clone -b manyuser https://github.com/hxc1427418039/shadowsocks.git  "/root/shadowsocks"
 	cd shadowsocks
 	pip install -r requirements.txt
 	chmod +x *.sh
@@ -198,8 +198,8 @@ install_node(){
 	echo
 	echo "#############################################################"
 	echo "# One click Install Shadowsocks-Python-Manyuser             #"
-	echo "# Github: https://github.com/mmmwhy/ss-panel-and-ss-py-mu   #"
-	echo "# Author: 91vps                                             #"
+	echo "# Github:https://github.com/hxc1427418039/ssrnode           #"
+	echo "# Author: hulisang                                          #"
 	echo "#############################################################"
 	echo
 	#Check Root
@@ -232,7 +232,7 @@ install_node(){
 	}
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
-	read -p "Please input your domain(like:https://ss.feiyang.li or http://114.114.114.114): " Userdomain
+	read -p "Please input your domain(like:https://hulisang.xyz): " Userdomain
 	read -p "Please input your muKey(like:mupass): " Usermukey
 	read -p "Please input your Node_ID(like:1): " UserNODE_ID
 	install_ssr_for_each
@@ -262,9 +262,9 @@ install_node(){
 	echo "/usr/bin/supervisord -c /etc/supervisord.conf" >> /etc/rc.local
 	chmod +x /etc/rc.d/rc.local
 	echo "#############################################################"
-	echo "# 安装完成，节点即将重启使配置生效                          #"
-	echo "# Github: https://github.com/mmmwhy/ss-panel-and-ss-py-mu   #"
-	echo "# Author: 91vps                                             #"
+	echo "# 安装完成，节点即将重启使配置生效                             #"
+	echo "# Github: https://github.com/hxc1427418039/ssrnode          #"
+	echo "# Author: hulisang                                          #"
 	echo "#############################################################"
 	reboot now
 }
@@ -273,8 +273,8 @@ install_node_db(){
 	echo
 	echo "#############################################################"
 	echo "# One click Install Shadowsocks-Python-Manyuser             #"
-	echo "# Github: https://github.com/mmmwhy/ss-panel-and-ss-py-mu   #"
-	echo "# Author: 91vps                                             #"
+	echo "# Github:https://github.com/hxc1427418039/ssrnode           #"
+	echo "# Author: hulisang                                          #"
 	echo "#############################################################"
 	echo
 	#Check Root
@@ -344,9 +344,9 @@ install_node_db(){
 	echo "/usr/bin/supervisord -c /etc/supervisord.conf" >> /etc/rc.local
 	chmod +x /etc/rc.d/rc.local
 	echo "#############################################################"
-	echo "# 安装完成，节点即将重启使配置生效                          #"
-	echo "# Github: https://github.com/mmmwhy/ss-panel-and-ss-py-mu   #"
-	echo "# Author: 91vps                                             #"
+	echo "# 安装完成，节点即将重启使配置生效                             #"
+	echo "# Github:https://github.com/hxc1427418039/ssrnode           #"
+	echo "# Author:hulisang                                           #"
 	echo "#############################################################"
 	reboot now
 }
@@ -385,8 +385,8 @@ install_panel_and_node(){
 echo
 echo "#############################################################"
 echo "# One click Install SS-panel and Shadowsocks-Py-Mu          #"
-echo "# Github: https://github.com/mmmwhy/ss-panel-and-ss-py-mu   #"
-echo "# Author: 91vps                                             #"
+echo "# Github: https://github.com/hxc1427418039/ssrnode          #"
+echo "# Author: hulisang                                          #"
 echo "# Please choose the server you want                         #"
 echo "# 1  SS-V3_mod_panel and node One click Install             #"
 echo "# 2  SS-node modwebapi One click Install                    #"
