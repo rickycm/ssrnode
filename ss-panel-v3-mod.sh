@@ -249,7 +249,7 @@ install_node(){
 	# 启用supervisord
 	supervisorctl shutdown
 	#某些机器没有echo_supervisord_conf 
-	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/supervisord.conf
+	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/supervisord.conf
 	supervisord
 	#iptables
 	iptables -F
@@ -331,7 +331,7 @@ install_node_db(){
 	# 启用supervisord
 	supervisorctl shutdown
 	#某些机器没有echo_supervisord_conf 
-	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/supervisord.conf
+	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/supervisord.conf
 	supervisord
 	#iptables
 	iptables -F
