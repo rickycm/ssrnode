@@ -7,13 +7,13 @@ install_ss_panel_mod_v3(){
 	yum update -y nss curl libcurl 
 	num=$1
 	if [ "${num}" != "1" ]; then
-  	  wget -c --no-check-certificate https://github.com/hxc1427418039/ssrnode/raw/master/lnmp1.4.zip && unzip lnmp1.4.zip && rm -rf lnmp1.4.zip && cd lnmp1.4 && chmod +x install.sh && ./install.sh lnmp
+  	  wget -c --no-check-certificate https://github.com/hulisang/ssrnode/raw/master/lnmp1.4.zip && unzip lnmp1.4.zip && rm -rf lnmp1.4.zip && cd lnmp1.4 && chmod +x install.sh && ./install.sh lnmp
 	fi
 	cd /home/wwwroot/
 	cp -r default/phpmyadmin/ .
 	cd default
 	rm -rf index.html
-	https://github.com/hxc1427418039/mod.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
+	https://github.com/hulisang/mod.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
 	cp config/.config.php.example config/.config.php
 	chattr -i .user.ini
 	mv .user.ini public
@@ -21,7 +21,7 @@ install_ss_panel_mod_v3(){
 	chmod -R 777 *
 	chown -R www:www storage
 	chattr +i public/.user.ini
-	wget -N -P  /usr/local/nginx/conf/ --no-check-certificate https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/nginx.conf
+	wget -N -P  /usr/local/nginx/conf/ --no-check-certificate https://raw.githubusercontent.com/hulisang/ssrnode/master/nginx.conf
 	service nginx restart
 	IPAddress=`wget http://whatismyip.akamai.com/ -O - -q ; echo`;
 	sed -i "s#103.74.192.11#${IPAddress}#" /home/wwwroot/default/sql/sspanel.sql
@@ -138,7 +138,7 @@ install_centos_ssr(){
 	./configure && make -j2 && make install
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
-	git clone -b manyuser https://github.com/hxc1427418039/shadowsocks.git  "/root/shadowsocks"
+	git clone -b manyuser https://github.com/hulisang/shadowsocks.git  "/root/shadowsocks"
 	cd /root/shadowsocks
 	chkconfig supervisord on
 	#第一次安装
