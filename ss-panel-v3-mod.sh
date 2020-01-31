@@ -178,7 +178,7 @@ install_ubuntu_ssr(){
 	apt-get install iptables git -y
 	Libtest
 	wget --no-check-certificate $libAddr
-	tar xf libsodium-1.0.13.tar.gz && cd libsodium-1.0.13
+	tar xf libsodium-1.0.17.tar.gz && cd libsodium-1.0.17
 	./configure && make -j2 && make install
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
