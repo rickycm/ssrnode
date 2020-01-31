@@ -51,7 +51,7 @@ Libtest(){
 	echo "$LIB_PING $LIB" >> ping.pl
 	libAddr=`sort -V ping.pl|sed -n '1p'|awk '{print $2}'`
 	if [ "$libAddr" == "$GIT" ];then
-		libAddr='https://github.com/hxc1427418039/ssrnode/raw/master/libsodium-1.0.17.tar.gz'
+		libAddr='https://github.com/hulisang/ssrnode/raw/master/libsodium-1.0.17.tar.gz'
 	else
 		libAddr='https://download.libsodium.org/libsodium/releases/libsodium-1.0.17.tar.gz'
 	fi
@@ -185,7 +185,7 @@ install_ubuntu_ssr(){
 	apt-get install python-pip git -y
 	pip install cymysql
 	cd /root
-	git clone -b manyuser https://github.com/hxc1427418039/shadowsocks.git  "/root/shadowsocks"
+	git clone -b manyuser https://github.com/hulisang/shadowsocks.git  "/root/shadowsocks"
 	cd shadowsocks
 	pip install -r requirements.txt
 	chmod +x *.sh
@@ -198,7 +198,7 @@ install_node(){
 	echo
 	echo "#############################################################"
 	echo "# One click Install Shadowsocks-Python-Manyuser             #"
-	echo "# Github:https://github.com/hxc1427418039/ssrnode           #"
+	echo "# Github:https://github.com/hulisang/ssrnode           #"
 	echo "# Author: hulisang                                          #"
 	echo "#############################################################"
 	echo
@@ -232,7 +232,7 @@ install_node(){
 	}
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
-	read -p "Please input your domain(like:https://hulisang.xyz): " Userdomain
+	read -p "Please input your domain(like:https://foxroom.ml): " Userdomain
 	read -p "Please input your muKey(like:mupass): " Usermukey
 	read -p "Please input your Node_ID(like:1): " UserNODE_ID
 	install_ssr_for_each
@@ -249,7 +249,7 @@ install_node(){
 	# 启用supervisord
 	supervisorctl shutdown
 	#某些机器没有echo_supervisord_conf 
-	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/supervisord.conf
+	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/hulisang/ssrnode/master/supervisord.conf
 	supervisord
 	#iptables
 	iptables -F
@@ -263,7 +263,7 @@ install_node(){
 	chmod +x /etc/rc.d/rc.local
 	echo "#############################################################"
 	echo "# 安装完成，节点即将重启使配置生效                             #"
-	echo "# Github: https://github.com/hxc1427418039/ssrnode          #"
+	echo "# Github: https://github.com/hulisang/ssrnode          #"
 	echo "# Author: hulisang                                          #"
 	echo "#############################################################"
 	reboot now
@@ -273,7 +273,7 @@ install_node_db(){
 	echo
 	echo "#############################################################"
 	echo "# One click Install Shadowsocks-Python-Manyuser             #"
-	echo "# Github:https://github.com/hxc1427418039/ssrnode           #"
+	echo "# Github:https://github.com/hulisang/ssrnode           #"
 	echo "# Author: hulisang                                          #"
 	echo "#############################################################"
 	echo
@@ -331,7 +331,7 @@ install_node_db(){
 	# 启用supervisord
 	supervisorctl shutdown
 	#某些机器没有echo_supervisord_conf 
-	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/supervisord.conf
+	wget -N -P  /etc/ --no-check-certificate  https://raw.githubusercontent.com/hulisang/ssrnode/master/supervisord.conf
 	supervisord
 	#iptables
 	iptables -F
@@ -345,7 +345,7 @@ install_node_db(){
 	chmod +x /etc/rc.d/rc.local
 	echo "#############################################################"
 	echo "# 安装完成，节点即将重启使配置生效                             #"
-	echo "# Github:https://github.com/hxc1427418039/ssrnode           #"
+	echo "# Github:https://github.com/hulisang/ssrnode           #"
 	echo "# Author:hulisang                                           #"
 	echo "#############################################################"
 	reboot now
@@ -355,7 +355,7 @@ install_panel_and_node(){
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
 	install_centos_ssr
-	wget -N -P  /root/shadowsocks/ --no-check-certificate  https://raw.githubusercontent.com/hxc1427418039/ssrnode/master/userapiconfig.py
+	wget -N -P  /root/shadowsocks/ --no-check-certificate  https://raw.githubusercontent.com/hulisang/ssrnode/master/userapiconfig.py
 	# 启用supervisord
 	echo_supervisord_conf > /etc/supervisord.conf
   sed -i '$a [program:ssr]\ncommand = python /root/shadowsocks/server.py\nuser = root\nautostart = true\nautorestart = true' /etc/supervisord.conf
